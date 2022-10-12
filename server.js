@@ -15,8 +15,12 @@ const io = new Server(server, {
   },
 });
 
-io.on("conenction", (socket) => {
-  console.log("here", socket, socket.id);
+io.on("connect", (socket) => {
+  console.log("here", socket.id);
+
+  socket.on("add_shape", () => {
+    console.log("addShape");
+  });
 
   socket.on("disconnect", () => {
     console.log("disconnected", socket.id);
