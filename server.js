@@ -15,15 +15,15 @@ const io = new Server(server, {
   },
 });
 
-io.on("connect", (socket) => {
-  console.log("here", socket.id);
+io.on("connection", (socket) => {
+  console.log("user connected: ", socket.id);
 
-  socket.on("add_shape", () => {
-    console.log("addShape");
+  socket.on("add_shape", (data) => {
+    socket.broadcast.emit("receive_shape", data);
   });
 
   socket.on("disconnect", () => {
-    console.log("disconnected", socket.id);
+    console.log("user disconnected", socket.id);
   });
 });
 
