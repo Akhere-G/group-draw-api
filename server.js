@@ -22,6 +22,10 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("receive_shape", data);
   });
 
+  socket.on("edit_shape", (data) => {
+    socket.broadcast.emit("receive_shape_to_edit", data);
+  });
+
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
   });
